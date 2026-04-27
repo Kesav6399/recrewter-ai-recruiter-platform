@@ -62,6 +62,17 @@ RECREWTER provides:
 
 ---
 
+## Screenshots
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Upload Page
+![Upload Page](screenshots/upload-page.png)
+
+### Match Results
+![Match Results](screenshots/results-page.png)
+
 ## Current Status
 Prototype / Concept-level project built using AI-assisted development.
 
