@@ -1,0 +1,97 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Application user (Recruiter, Team Lead, Admin)",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["Recruiter", "Team Lead", "Admin"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Requirement": {
+      "title": "Requirement",
+      "description": "Client job requirement",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "clientName": { "type": "string" },
+        "roleTitle": { "type": "string" },
+        "jdText": { "type": "string" },
+        "mandatorySkills": { "type": "array", "items": { "type": "string" } },
+        "goodToHaveSkills": { "type": "array", "items": { "type": "string" } },
+        "minExperience": { "type": "number" },
+        "maxExperience": { "type": "number" },
+        "location": { "type": "string" },
+        "noticePeriod": { "type": "string" },
+        "employmentType": { "type": "string" },
+        "budget": { "type": "string" },
+        "priority": { "type": "string", "enum": ["Low", "Medium", "High"] },
+        "remarks": { "type": "string" },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["clientName", "roleTitle", "jdText", "mandatorySkills"]
+    },
+    "Candidate": {
+      "title": "Candidate",
+      "description": "Candidate profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "experience": { "type": "number" },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "location": { "type": "string" },
+        "currentCompany": { "type": "string" },
+        "currentRole": { "type": "string" },
+        "resumeUrl": { "type": "string" },
+        "parsedData": { "type": "object" },
+        "stage": { "type": "string" },
+        "requirementId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email"]
+    },
+    "MatchResult": {
+      "title": "MatchResult",
+      "description": "AI matching result between JD and Candidate",
+      "type": "object",
+      "properties": {
+        "candidateId": { "type": "string" },
+        "requirementId": { "type": "string" },
+        "score": { "type": "number" },
+        "summary": { "type": "string" },
+        "strengths": { "type": "array", "items": { "type": "string" } },
+        "gaps": { "type": "array", "items": { "type": "string" } },
+        "redFlags": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "PipelineHistory": {
+      "title": "PipelineHistory",
+      "description": "History of candidate stage movements",
+      "type": "object",
+      "properties": {
+        "candidateId": { "type": "string" },
+        "stage": { "type": "string" },
+        "updatedBy": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "notes": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{uid}": { "schema": "User", "description": "User profiles" },
+    "/requirements/{reqId}": { "schema": "Requirement", "description": "Job requirements" },
+    "/candidates/{candId}": { "schema": "Candidate", "description": "Candidate records" },
+    "/matchResults/{matchId}": { "schema": "MatchResult", "description": "AI matching results" },
+    "/pipelineHistory/{histId}": { "schema": "PipelineHistory", "description": "Stage history" }
+  }
+}

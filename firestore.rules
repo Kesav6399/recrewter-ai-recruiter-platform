@@ -1,0 +1,54 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin' ||
+         (request.auth.token.email == "starprasad90@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isRecruiter() {
+      return isAuthenticated() && 
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['Recruiter', 'Team Lead', 'Admin']);
+    }
+
+    // User Rules
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create, update: if isOwner(userId) || isAdmin();
+    }
+
+    // Requirements Rules
+    match /requirements/{reqId} {
+      allow read: if isRecruiter();
+      allow create, update, delete: if isRecruiter();
+    }
+
+    // Candidates Rules
+    match /candidates/{candId} {
+      allow read: if isRecruiter();
+      allow create, update, delete: if isRecruiter();
+    }
+
+    // Match Results Rules
+    match /matchResults/{matchId} {
+      allow read: if isRecruiter();
+      allow create, update: if isRecruiter();
+    }
+
+    // Pipeline History Rules
+    match /pipelineHistory/{histId} {
+      allow read: if isRecruiter();
+      allow create: if isRecruiter();
+    }
+  }
+}
