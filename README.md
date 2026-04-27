@@ -1,20 +1,79 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# RECREWTER – AI-Assisted Recruiter Workflow Platform
 
-# Run and deploy your AI Studio app
+## Overview
+RECREWTER is an AI-assisted recruiter platform designed to streamline the hiring process by intelligently comparing job descriptions with resumes, ranking candidates, and managing recruitment workflows.
 
-This contains everything you need to run your app locally.
+This project focuses on solving real recruiter problems such as manual resume screening, inefficient comparison, and lack of structured candidate evaluation.
 
-View your app in AI Studio: https://ai.studio/apps/009621f7-e1b1-4b46-aabb-528d42a0382b
+---
 
-## Run Locally
+## Problem Statement
+Recruiters face challenges such as:
+- Manual JD vs resume comparison
+- Difficulty in identifying best candidates quickly
+- Lack of structured evaluation methods
+- Managing multiple candidates across stages
 
-**Prerequisites:**  Node.js
+---
 
+## Solution
+RECREWTER provides:
+- Structured JD vs Resume comparison
+- Candidate ranking system
+- Workflow-based candidate tracking
+- Explainable evaluation logic
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+---
+
+## Key Features
+- JD upload and parsing (concept)
+- Resume comparison workflow
+- Candidate scoring and ranking
+- Pipeline stage tracking (Shortlist, Reject, Hold)
+- Recruiter-friendly UI thinking
+
+---
+
+## Skills Demonstrated
+- Requirement Analysis
+- Workflow Design
+- Product Thinking
+- Data Structuring
+- UI/UX Planning
+- Analytical Thinking
+
+---
+
+## System Workflow
+1. Upload Job Description
+2. Upload Candidate Resume
+3. Compare skills and experience
+4. Generate match score
+5. Rank candidates
+6. Move candidates through pipeline stages
+
+---
+
+## Sample Evaluation Logic (Concept)
+- Skills Match: 40%
+- Experience Match: 30%
+- Tools/Tech Match: 20%
+- Communication/Other: 10%
+
+---
+
+## Current Status
+Prototype / Concept-level project built using AI-assisted development.
+
+---
+
+## Learning Outcome
+This project helped me understand how real-world recruitment workflows can be converted into structured product features and intelligent decision systems.
+
+---
+
+## Future Improvements
+- Integration with real resume parsing APIs
+- Dashboard visualization
+- Database integration
+- Advanced AI-based scoring models
